@@ -40,6 +40,8 @@ using StringTools;
 
 class ChartingState extends MusicBeatState
 {
+	private var enemyData:Int = 1;
+
 	var _file:FileReference;
 	var _load:FileReference;
 
@@ -516,9 +518,20 @@ class ChartingState extends MusicBeatState
 
 	var writingNotes:Bool = false;
 
+	var enemyPress:Bool = false;
+
 	override function update(elapsed:Float)
 	{
 		curStep = recalculateSteps();
+
+		if (FlxG.keys.justPressed.T)
+		{	
+			if (enemyData >=2)
+				enemyData=1;
+			else
+				enemyData+=1;
+			trace("Changing enemy singer");
+		}
 
 		if (FlxG.keys.justPressed.ALT && UI_box.selected_tab == 0)
 		{
@@ -847,7 +860,9 @@ class ChartingState extends MusicBeatState
 			+ "\nSection: "
 			+ curSection 
 			+ "\nCurStep: " 
-			+ curStep;
+			+ curStep
+			+ "\nEnemyData: "
+			+ enemyData;
 		super.update(elapsed);
 	}
 
@@ -1152,6 +1167,7 @@ class ChartingState extends MusicBeatState
 		var noteStrum = getStrumTime(dummyArrow.y) + sectionStartTime();
 		var noteData = Math.floor(FlxG.mouse.x / GRID_SIZE);
 		var noteSus = 0;
+		var noteEnemy = enemyData;
 
 		if (n != null)
 			_song.notes[curSection].sectionNotes.push([n.strumTime, n.noteData, n.sustainLength]);
@@ -1161,6 +1177,11 @@ class ChartingState extends MusicBeatState
 		var thingy = _song.notes[curSection].sectionNotes[_song.notes[curSection].sectionNotes.length - 1];
 
 		curSelectedNote = thingy;
+
+		trace(noteStrum);
+		trace(noteData);
+		trace(noteSus);
+		trace(enemyData);
 
 		updateGrid();
 		updateNoteUI();

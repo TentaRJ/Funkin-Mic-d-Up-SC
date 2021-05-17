@@ -82,6 +82,14 @@ class PlayState extends MusicBeatState
 	private var dad:Character;
 	private var gf:Character;
 	private var boyfriend:Boyfriend;
+	private var buddy1:Character;
+	private var enemy:Character;
+
+	private var buddy:Bool=false;
+
+	private var enemyData:Int = 1;
+
+	var camPos:FlxPoint;
 
 	private var notes:FlxTypedGroup<Note>;
 	private var unspawnNotes:Array<Note> = [];
@@ -234,6 +242,7 @@ class PlayState extends MusicBeatState
 		camNOTES.alpha = 0;
 		camPAUSE = new FlxCamera();
 		camPAUSE.bgColor.alpha = 0;
+		camHUD.visible=false;
 
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camNOTES);
@@ -715,6 +724,14 @@ class PlayState extends MusicBeatState
 			bg.scale.set(6, 6);
 			add(bg);
 		}
+		case 'tentaone':
+		{
+			defaultCamZoom = 0.75;
+			curStage = 'bedroom';
+			var bg:FlxSprite = new FlxSprite(-100).loadGraphic(Paths.image('custom/background', 'weekcustom'));
+			bg.scrollFactor.set(0.1, 0.1);
+			add(bg);
+		}
 		default:
 		{
 			defaultCamZoom = 0.9;
@@ -778,7 +795,7 @@ class PlayState extends MusicBeatState
 
 		dad = new Character(100, 100, SONG.player2);
 
-		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
+		camPos = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
 
 		switch (SONG.player2)
 		{
@@ -802,6 +819,10 @@ class PlayState extends MusicBeatState
 			case 'pico':
 				camPos.x += 600;
 				dad.y += 300;
+			case 'tenta':
+				camPos.x += 600;
+				dad.x += 300;
+				dad.y += 200;
 			case 'parents-christmas':
 				dad.x -= 500;
 			case 'senpai':
@@ -816,6 +837,12 @@ class PlayState extends MusicBeatState
 				dad.x -= 150;
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+		}
+
+		switch (SONG.song.toLowerCase())
+		{
+			case 'tentaone':
+				dad.x-=300;
 		}
 
 		boyfriend = new Boyfriend(770, 450, SONG.player1);
@@ -863,6 +890,21 @@ class PlayState extends MusicBeatState
 			add(limo);
 
 		add(dad);
+
+		switch (SONG.song.toLowerCase())
+		{
+			case 'tutorial':
+			{
+				add(dad);
+				trace("Buddies!");
+				buddy1 = new Character(200, 450, "pico");
+				buddy1.scrollFactor.set(0.95, 0.95);
+				add(buddy1);
+				trace("Added buddies!");
+			}
+		}
+		
+
 		add(boyfriend);
 
 		doof = new DialogueBox(false, dialogue);
@@ -1297,6 +1339,7 @@ class PlayState extends MusicBeatState
 	function startCountdown():Void
 	{
 		inCutscene = false;
+		camHUD.visible=true;
 
 		if (gameplayArea != "Endless" || (gameplayArea == "Endless" && loops == 0))
 		{
@@ -1313,10 +1356,12 @@ class PlayState extends MusicBeatState
 
 		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 		{
-			dad.dance();
-			gf.dance();
 			if (!frozen)
 			{
+				if (buddy)
+					buddy1.dance();
+				dad.dance();
+				gf.dance();
 				boyfriend.playAnim('idle');
 				if (_modifiers.FrightSwitch)
 					{
@@ -1613,6 +1658,26 @@ class PlayState extends MusicBeatState
 				{
 					gottaHitNote = !section.mustHitSection;
 				}
+
+				switch (songNotes[3])
+				{
+					case 1:
+					{
+						enemy = dad;
+						camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+					}
+					case 2:
+					{
+						enemy = buddy1;
+						camPos.set(buddy1.getGraphicMidpoint().x + 300, buddy1.getGraphicMidpoint().y);
+					}
+					default:
+					{
+						enemy = dad;
+						camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+					}
+				}
+
 
 				switch (chartType)
 				{
@@ -2509,16 +2574,21 @@ class PlayState extends MusicBeatState
 									altAnim = '-alt';
 							}
 		
+
 							switch (Math.abs(daNote.noteData))
 							{
 								case 0:
-									dad.playAnim('singLEFT' + altAnim, true);
+									var anim:String="singLEFT";
+									enemy.playAnim(anim + altAnim, true);
 								case 1:
-									dad.playAnim('singDOWN' + altAnim, true);
+									var anim:String="singDOWN";
+									enemy.playAnim('singDOWN' + altAnim, true);
 								case 2:
-									dad.playAnim('singUP' + altAnim, true);
+									var anim:String="singUP";
+									enemy.playAnim('singUP' + altAnim, true);
 								case 3:
-									dad.playAnim('singRIGHT' + altAnim, true);
+									var anim:String="singRIGHT";
+									enemy.playAnim('singRIGHT' + altAnim, true);
 							}
 							
 							player2Strums.forEach(function(spr:FlxSprite)
