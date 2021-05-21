@@ -104,7 +104,7 @@
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
 	
 	<!--Allows the License to be in exports and compiles of the code-->
-	<assets path="LICENSE" rename="License so we don't get canceled"/>
+	<assets path="LICENSE" rename="License.txt"/>
 	
 	<!-- <template path='mods' /> -->
 	

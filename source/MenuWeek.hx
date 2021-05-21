@@ -30,38 +30,23 @@ class MenuWeek extends MusicBeatState
 
 	var weekData:Array<Dynamic> = [
 		['Tutorial'],
-		['Bopeebo', 'Fresh', 'Dadbattle'],
-		['Spookeez', 'South', "Monster"],
-		['Pico', 'Philly', "Blammed"],
-		['Satin-Panties', "High", "Milf"],
-		['Cocoa', 'Eggnog', 'Winter-Horrorland'],
-		['Senpai', 'Roses', 'Thorns']
+		['Bopeebo', 'Fresh', 'Dadbattle']
 	];
 	
 	var curWeekData:Array<Dynamic> = [];
 
 	public static var curDifficulty:Int = 2;
 
-	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true];
+	public static var weekUnlocked:Array<Bool> = [true, true, false];
 
 	var weekCharacters:Array<String> = [
 		"gf",
-		"dad",
-		"spooky",
-		"pico",
-		"mom",
-		"parents-christmas",
-		"senpai"
+		"gf"
 	];
 
 	var weekNames:Array<String> = [
 		"Gotta learn someway...",
-		"Daddy Dearest",
-		"Spooky Month",
-		"PICO",
-		"MOMMY MUST MURDER",
-		"RED SNOW",
-		"hating simulator ft. moawling"
+		"Omni"
 	];
 
 	var txtWeekTitle:FlxText;
@@ -317,54 +302,56 @@ class MenuWeek extends MusicBeatState
 
 	function selectWeek()
 	{
-		if (secret)
+		if (weekUnlocked[2])
 		{
-			FlxG.sound.play(Paths.sound('confirmMenu'), _variables.svolume/100);
-
-			grpWeekText.members[curWeek].startFlashing();
-
-			PlayState.storyPlaylist = ['Tutorial'];
-			trace(PlayState.storyPlaylist);
-			PlayState.gameplayArea = "Story";
-			selectedSomethin = true;
-
-			PlayState.storyDifficulty = 10;
-
-			PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase(), PlayState.storyPlaylist[0].toLowerCase());
-			PlayState.storyWeek = 10;
-			PlayState.campaignScore = 0;
-
-			FlxTween.tween(bg, { alpha:0}, 0.6, { ease: FlxEase.quartInOut});
-			FlxTween.tween(checker, { alpha:0}, 0.6, { ease: FlxEase.quartInOut});
-			FlxTween.tween(characterUI, { x:3700}, 0.6, { ease: FlxEase.quartInOut});
-			FlxTween.tween(txtTracklist, { x:-2600}, 0.6, { ease: FlxEase.quartInOut});
-			FlxTween.tween(gradientBar, { alpha:0}, 0.6, { ease: FlxEase.quartInOut});
-			FlxTween.tween(side, { alpha:0}, 0.8, { ease: FlxEase.quartInOut});
-			FlxTween.tween(bottom, { alpha:0}, 0.8, { ease: FlxEase.quartInOut});
-			FlxTween.tween(scoreText, { y:-50, alpha:0}, 0.8, { ease: FlxEase.quartInOut});
-			FlxTween.tween(txtWeekTitle, { y:-50, alpha:0}, 0.8, { ease: FlxEase.quartInOut});
-			FlxTween.tween(sprDifficulty, { y:-120, alpha:0}, 0.8, { ease: FlxEase.quartInOut});
-
-			for (item in ranks.members)
+			if (secret)
 				{
-					FlxTween.tween(item, { x:2600}, 0.6, { ease: FlxEase.quartInOut});
+					FlxG.sound.play(Paths.sound('confirmMenu'), _variables.svolume/100);
+
+					grpWeekText.members[curWeek].startFlashing();
+
+					PlayState.storyPlaylist = ['Tutorial'];
+					trace(PlayState.storyPlaylist);
+					PlayState.gameplayArea = "Story";
+					selectedSomethin = true;
+
+					PlayState.storyDifficulty = 10;
+
+					PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase(), PlayState.storyPlaylist[0].toLowerCase());
+					PlayState.storyWeek = 10;
+					PlayState.campaignScore = 0;
+
+					FlxTween.tween(bg, { alpha:0}, 0.6, { ease: FlxEase.quartInOut});
+					FlxTween.tween(checker, { alpha:0}, 0.6, { ease: FlxEase.quartInOut});
+					FlxTween.tween(characterUI, { x:3700}, 0.6, { ease: FlxEase.quartInOut});
+					FlxTween.tween(txtTracklist, { x:-2600}, 0.6, { ease: FlxEase.quartInOut});
+					FlxTween.tween(gradientBar, { alpha:0}, 0.6, { ease: FlxEase.quartInOut});
+					FlxTween.tween(side, { alpha:0}, 0.8, { ease: FlxEase.quartInOut});
+					FlxTween.tween(bottom, { alpha:0}, 0.8, { ease: FlxEase.quartInOut});
+					FlxTween.tween(scoreText, { y:-50, alpha:0}, 0.8, { ease: FlxEase.quartInOut});
+					FlxTween.tween(txtWeekTitle, { y:-50, alpha:0}, 0.8, { ease: FlxEase.quartInOut});
+					FlxTween.tween(sprDifficulty, { y:-120, alpha:0}, 0.8, { ease: FlxEase.quartInOut});
+
+					for (item in ranks.members)
+						{
+							FlxTween.tween(item, { x:2600}, 0.6, { ease: FlxEase.quartInOut});
+						}
+
+					#if desktop
+					DiscordClient.changePresence("Selecting chart types.", null);
+					#end
+
+					for (item in grpWeekText.members)
+						{
+							FlxTween.tween(item, { alpha:0}, 0.9, { ease: FlxEase.quartInOut});
+						}
+
+					new FlxTimer().start(0.9, function(tmr:FlxTimer)
+						{
+							FlxG.state.openSubState(new Substate_ChartType());
+						});
 				}
-
-			#if desktop
-			DiscordClient.changePresence("Selecting chart types.", null);
-			#end
-
-			for (item in grpWeekText.members)
-				{
-					FlxTween.tween(item, { alpha:0}, 0.9, { ease: FlxEase.quartInOut});
-				}
-
-			new FlxTimer().start(0.9, function(tmr:FlxTimer)
-				{
-					FlxG.state.openSubState(new Substate_ChartType());
-				});
 		}
-
 		else if (weekUnlocked[curWeek])
 		{
 			FlxG.sound.play(Paths.sound('confirmMenu'), _variables.svolume/100);

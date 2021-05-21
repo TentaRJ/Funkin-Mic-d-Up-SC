@@ -42,6 +42,8 @@ class ChartingState extends MusicBeatState
 {
 	private var enemyData:Int = 1;
 
+	private var enemyName:String = "";
+
 	var _file:FileReference;
 	var _load:FileReference;
 
@@ -854,6 +856,18 @@ class ChartingState extends MusicBeatState
 			if (FlxG.keys.justPressed.DOWN)
 				Conductor.changeBPM(Conductor.bpm - 1); */
 
+		switch (enemyData)
+		{
+			case "1":
+				{
+					enemyName="Dad";
+				}
+			case "2":
+				{
+					enemyName='Buddy 1';
+				}
+		}
+
 		bpmTxt.text = bpmTxt.text = Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2))
 			+ " / "
 			+ Std.string(FlxMath.roundDecimal(FlxG.sound.music.length / 1000, 2))
@@ -862,7 +876,7 @@ class ChartingState extends MusicBeatState
 			+ "\nCurStep: " 
 			+ curStep
 			+ "\nEnemyData: "
-			+ enemyData;
+			+ enemyName;
 		super.update(elapsed);
 	}
 
@@ -1170,9 +1184,9 @@ class ChartingState extends MusicBeatState
 		var noteEnemy = enemyData;
 
 		if (n != null)
-			_song.notes[curSection].sectionNotes.push([n.strumTime, n.noteData, n.sustainLength]);
+			_song.notes[curSection].sectionNotes.push([n.strumTime, n.noteData, n.sustainLength, n.noteEnemy]);
 		else
-			_song.notes[curSection].sectionNotes.push([noteStrum, noteData, noteSus]);
+			_song.notes[curSection].sectionNotes.push([noteStrum, noteData, noteSus, noteEnemy]);
 
 		var thingy = _song.notes[curSection].sectionNotes[_song.notes[curSection].sectionNotes.length - 1];
 

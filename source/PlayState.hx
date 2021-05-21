@@ -2802,7 +2802,6 @@ class PlayState extends MusicBeatState
 							transIn = FlxTransitionableState.defaultTransIn;
 							transOut = FlxTransitionableState.defaultTransOut;
 		
-							// if ()
 							MenuWeek.weekUnlocked[Std.int(Math.min(storyWeek + 1, MenuWeek.weekUnlocked.length - 1))] = true;
 		
 							if (SONG.validScore)
