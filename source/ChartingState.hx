@@ -573,7 +573,7 @@ class ChartingState extends MusicBeatState
 							}
 						}
 					trace('adding note');
-					_song.notes[curSection].sectionNotes.push([Conductor.songPosition, i, 0]);
+					_song.notes[curSection].sectionNotes.push([Conductor.songPosition, i, 0, 1]);
 					updateGrid();
 				}
 			}
@@ -858,11 +858,11 @@ class ChartingState extends MusicBeatState
 
 		switch (enemyData)
 		{
-			case "1":
+			case 1:
 				{
 					enemyName="Dad";
 				}
-			case "2":
+			case 2:
 				{
 					enemyName='Buddy 1';
 				}
@@ -993,7 +993,7 @@ class ChartingState extends MusicBeatState
 			{
 				var strum = note[0] + Conductor.stepCrochet * (_song.notes[daSec].lengthInSteps * sectionNum);
 	
-				var copiedNote:Array<Dynamic> = [strum, note[1], note[2]];
+				var copiedNote:Array<Dynamic> = [strum, note[1], note[2], note[3]];
 				_song.notes[daSec].sectionNotes.push(copiedNote);
 			}
 	
@@ -1089,9 +1089,11 @@ class ChartingState extends MusicBeatState
 			var daNoteInfo = i[1];
 			var daStrumTime = i[0];
 			var daSus = i[2];
+			var daEnemy = i[3];
 
 			var note:Note = new Note(daStrumTime, daNoteInfo % 4);
 			note.sustainLength = daSus;
+			note.enemyValue = daEnemy;
 			note.setGraphicSize(GRID_SIZE, GRID_SIZE);
 			note.updateHitbox();
 			note.x = Math.floor(daNoteInfo * GRID_SIZE);
@@ -1184,7 +1186,7 @@ class ChartingState extends MusicBeatState
 		var noteEnemy = enemyData;
 
 		if (n != null)
-			_song.notes[curSection].sectionNotes.push([n.strumTime, n.noteData, n.sustainLength, n.noteEnemy]);
+			_song.notes[curSection].sectionNotes.push([n.strumTime, n.noteData, n.sustainLength, n.enemyValue]);
 		else
 			_song.notes[curSection].sectionNotes.push([noteStrum, noteData, noteSus, noteEnemy]);
 
@@ -1195,7 +1197,7 @@ class ChartingState extends MusicBeatState
 		trace(noteStrum);
 		trace(noteData);
 		trace(noteSus);
-		trace(enemyData);
+		trace(noteEnemy);
 
 		updateGrid();
 		updateNoteUI();

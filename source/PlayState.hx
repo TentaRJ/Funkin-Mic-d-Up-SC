@@ -85,11 +85,9 @@ class PlayState extends MusicBeatState
 	private var gf:Character;
 	private var boyfriend:Boyfriend;
 	private var buddy1:Character;
-	private var enemy:Character;
 
+	private var buddySing:Bool=false;
 	private var buddy:Bool=false;
-
-	private var enemyData:Int = 1;
 
 	var camPos:FlxPoint;
 
@@ -900,7 +898,6 @@ class PlayState extends MusicBeatState
 			case 'tutorial':
 			{
 				buddy=true;
-				add(dad);
 				trace("Buddies!");
 				buddy1 = new Character(200, 450, "pico");
 				buddy1.scrollFactor.set(0.95, 0.95);
@@ -908,7 +905,6 @@ class PlayState extends MusicBeatState
 				trace("Added buddies!");
 			}
 		}
-		
 
 		add(boyfriend);
 
@@ -1631,7 +1627,17 @@ class PlayState extends MusicBeatState
 
 			for (songNotes in section.sectionNotes)
 			{
-
+				if (buddy)
+					switch (songNotes[3])
+					{
+						case 1:
+							buddySing = false;
+						case 2:
+							buddySing = true;
+						default:
+							buddySing = false;
+					}
+		
 				var daStrumTime:Float = songNotes[0];
 				if (daStrumTime < 0)
 					daStrumTime = 0;
@@ -1663,26 +1669,6 @@ class PlayState extends MusicBeatState
 				{
 					gottaHitNote = !section.mustHitSection;
 				}
-
-				switch (songNotes[3])
-				{
-					case 1:
-					{
-						enemy = dad;
-						camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
-					}
-					case 2:
-					{
-						enemy = buddy1;
-						camPos.set(buddy1.getGraphicMidpoint().x + 300, buddy1.getGraphicMidpoint().y);
-					}
-					default:
-					{
-						enemy = dad;
-						camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
-					}
-				}
-
 
 				switch (chartType)
 				{
@@ -1719,7 +1705,7 @@ class PlayState extends MusicBeatState
 				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote);
 				swagNote.sustainLength = songNotes[2];
 				swagNote.scrollFactor.set(0, 0);
-
+				
 				if (_modifiers.WidenSwitch)
 					swagNote.scale.x *= _modifiers.Widen/100 + 1;
 				if (_modifiers.StretchSwitch && !swagNote.isSustainNote)
@@ -2055,7 +2041,8 @@ class PlayState extends MusicBeatState
 							camNOTES.angle -= 0.01 * _modifiers.Camera;
 						}
 				}
-		
+
+
 				cameraX = camFollow.x;
 				cameraY = camFollow.y;
 		
@@ -2577,22 +2564,77 @@ class PlayState extends MusicBeatState
 								if (SONG.notes[Math.floor(curStep / 16)].altAnim)
 									altAnim = '-alt';
 							}
-		
 
 							switch (Math.abs(daNote.noteData))
 							{
 								case 0:
 									var anim:String="singLEFT";
-									enemy.playAnim(anim + altAnim, true);
+									if (buddy)
+									{
+										if (buddySing)
+										{
+											buddy1.playAnim(anim + altAnim, true);
+										}
+										else
+										{
+											dad.playAnim(anim + altAnim, true);
+										}
+									}
+									else
+									{
+										dad.playAnim(anim + altAnim, true);
+									}
 								case 1:
 									var anim:String="singDOWN";
-									enemy.playAnim('singDOWN' + altAnim, true);
+									if (buddy)
+									{
+										if (buddySing)
+										{
+											buddy1.playAnim(anim + altAnim, true);
+										}
+										else
+										{
+											dad.playAnim(anim + altAnim, true);
+										}
+									}
+									else
+									{
+										dad.playAnim(anim + altAnim, true);
+									}
 								case 2:
 									var anim:String="singUP";
-									enemy.playAnim('singUP' + altAnim, true);
+									if (buddy)
+									{
+										if (buddySing)
+										{
+											buddy1.playAnim(anim + altAnim, true);
+										}
+										else
+										{
+											dad.playAnim(anim + altAnim, true);
+										}
+									}
+									else
+									{
+										dad.playAnim(anim + altAnim, true);
+									}
 								case 3:
 									var anim:String="singRIGHT";
-									enemy.playAnim('singRIGHT' + altAnim, true);
+									if (buddy)
+									{
+										if (buddySing)
+										{
+											buddy1.playAnim(anim + altAnim, true);
+										}
+										else
+										{
+											dad.playAnim(anim + altAnim, true);
+										}
+									}
+									else
+									{
+										dad.playAnim(anim + altAnim, true);
+									}
 							}
 							
 							player2Strums.forEach(function(spr:FlxSprite)

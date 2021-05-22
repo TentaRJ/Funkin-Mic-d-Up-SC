@@ -146,7 +146,7 @@ class PauseSubState extends MusicBeatSubstate
 					case "Charting":
 						FlxG.switchState(new SettingsState());
 					default:
-						FlxG.switchState(new MainMenuState())
+						FlxG.switchState(new MainMenuState());
 					}
 			}
 		}

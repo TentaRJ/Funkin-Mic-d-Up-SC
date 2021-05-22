@@ -40,12 +40,6 @@ class FirstCheckState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
-		switch (_variables.firstTime)
-		{
-			case true:
-				FlxG.switchState(new FirstTimeState()); // First time language setting
-			case false:
-				FlxG.switchState(new TitleState()); // First time language setting
-		}
+		FlxG.switchState(new FirstTimeState()); // First time language setting
 	}
 }
