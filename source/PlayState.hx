@@ -900,7 +900,6 @@ class PlayState extends MusicBeatState
 				buddy=true;
 				trace("Buddies!");
 				buddy1 = new Character(200, 450, "pico");
-				buddy1.scrollFactor.set(0.95, 0.95);
 				add(buddy1);
 				trace("Added buddies!");
 			}

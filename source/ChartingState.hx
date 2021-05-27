@@ -528,10 +528,7 @@ class ChartingState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.T)
 		{	
-			if (enemyData >=2)
-				enemyData=1;
-			else
-				enemyData+=1;
+			enemyPress != enemyPress;
 			trace("Changing enemy singer");
 		}
 
@@ -856,13 +853,13 @@ class ChartingState extends MusicBeatState
 			if (FlxG.keys.justPressed.DOWN)
 				Conductor.changeBPM(Conductor.bpm - 1); */
 
-		switch (enemyData)
+		switch (enemyPress)
 		{
-			case 1:
+			case false:
 				{
 					enemyName="Dad";
 				}
-			case 2:
+			case true:
 				{
 					enemyName='Buddy 1';
 				}
@@ -1089,11 +1086,9 @@ class ChartingState extends MusicBeatState
 			var daNoteInfo = i[1];
 			var daStrumTime = i[0];
 			var daSus = i[2];
-			var daEnemy = i[3];
 
 			var note:Note = new Note(daStrumTime, daNoteInfo % 4);
 			note.sustainLength = daSus;
-			note.enemyValue = daEnemy;
 			note.setGraphicSize(GRID_SIZE, GRID_SIZE);
 			note.updateHitbox();
 			note.x = Math.floor(daNoteInfo * GRID_SIZE);
@@ -1123,7 +1118,8 @@ class ChartingState extends MusicBeatState
 			mustHitSection: true,
 			sectionNotes: [],
 			typeOfSection: 0,
-			altAnim: false
+			altAnim: false,
+			enemyPress: false
 		};
 
 		_song.notes.push(sec);
@@ -1183,12 +1179,11 @@ class ChartingState extends MusicBeatState
 		var noteStrum = getStrumTime(dummyArrow.y) + sectionStartTime();
 		var noteData = Math.floor(FlxG.mouse.x / GRID_SIZE);
 		var noteSus = 0;
-		var noteEnemy = enemyData;
 
 		if (n != null)
-			_song.notes[curSection].sectionNotes.push([n.strumTime, n.noteData, n.sustainLength, n.enemyValue]);
+			_song.notes[curSection].sectionNotes.push([n.strumTime, n.noteData, n.sustainLength]);
 		else
-			_song.notes[curSection].sectionNotes.push([noteStrum, noteData, noteSus, noteEnemy]);
+			_song.notes[curSection].sectionNotes.push([noteStrum, noteData, noteSus]);
 
 		var thingy = _song.notes[curSection].sectionNotes[_song.notes[curSection].sectionNotes.length - 1];
 
@@ -1197,7 +1192,6 @@ class ChartingState extends MusicBeatState
 		trace(noteStrum);
 		trace(noteData);
 		trace(noteSus);
-		trace(noteEnemy);
 
 		updateGrid();
 		updateNoteUI();
