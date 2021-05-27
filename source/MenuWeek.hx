@@ -33,14 +33,15 @@ class MenuWeek extends MusicBeatState
 		['Pico', 'Philly', "Blammed"],
 		['Satin-Panties', "High", "Milf"],
 		['Cocoa', 'Eggnog', 'Winter-Horrorland'],
-		['Senpai', 'Roses', 'Thorns']
+		['Senpai', 'Roses', 'Thorns'],
+		["Rapadagna-Rumble", "Heart-Of-Icegrave", "Monster-Murmer"]
 	];
 	
 	var curWeekData:Array<Dynamic> = [];
 
 	public static var curDifficulty:Int = 2;
 
-	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true];
+	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true];
 
 	var weekCharacters:Array<String> = [
 		"gf",
@@ -49,7 +50,8 @@ class MenuWeek extends MusicBeatState
 		"pico",
 		"mom",
 		"parents-christmas",
-		"senpai"
+		"senpai",
+		"gf"
 	];
 
 	var weekNames:Array<String> = [
@@ -59,7 +61,8 @@ class MenuWeek extends MusicBeatState
 		"PICO",
 		"MOMMY MUST MURDER",
 		"RED SNOW",
-		"hating simulator ft. moawling"
+		"hating simulator ft. moawling",
+		"Vs Asha"
 	];
 
 	var txtWeekTitle:FlxText;
@@ -378,10 +381,10 @@ class MenuWeek extends MusicBeatState
 	{
 		curDifficulty += change;
 
-		if (curDifficulty < 0)
-			curDifficulty = 5;
-		if (curDifficulty > 5)
-			curDifficulty = 0;
+		if (curDifficulty < 1)
+			curDifficulty = 3;
+		if (curDifficulty > 3)
+			curDifficulty = 1;
 
 		updateRank();
 

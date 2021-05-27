@@ -367,6 +367,41 @@ class PlayState extends MusicBeatState
 
 		switch (SONG.song.toLowerCase())
 		{
+			case 'rapadagna-rumble':
+				{
+					defaultCamZoom = 0.8;
+					curStage = 'oasis';
+
+					var bg:FlxSprite = new FlxSprite(-880, -960).loadGraphic(Paths.image('custom/background1', 'weekcustom'));
+					bg.scrollFactor.set(0.6, 1);
+					bg.scale.set(1.2, 1.2);
+					bg.updateHitbox();
+					add(bg);
+
+					var oasisCrowd = new FlxSprite(-615, -480);
+					oasisCrowd.frames = Paths.getSparrowAtlas('custom/crowd', 'weekcustom');
+					oasisCrowd.scale.set(1.6, 1.6);
+					oasisCrowd.scrollFactor.set(0.6, 1);
+					oasisCrowd.setGraphicSize(Std.int(oasisCrowd.width * 0.85));
+					oasisCrowd.updateHitbox();
+					oasisCrowd.animation.addByPrefix('bop', "Crowd0", 24, true);
+					oasisCrowd.animation.play('bop', true);
+					add(oasisCrowd);
+
+					var ground:FlxSprite = new FlxSprite(-880, -960).loadGraphic(Paths.image('custom/foreground1', 'weekcustom'));
+					ground.scrollFactor.set(1.4, 1);
+					ground.scale.set(1.2, 1.2);
+					ground.updateHitbox();
+					add(ground);
+				}
+			case 'heart-of-icegrave':
+			{
+
+			}
+			case 'monster-murmer':
+			{
+
+			}
 		case 'spookeez' | 'monster' | 'south':
 		{
 			curStage = "spooky";
@@ -825,6 +860,24 @@ class PlayState extends MusicBeatState
 		// REPOSITIONING PER STAGE
 		switch (curStage)
 		{
+			case 'oasis':
+				boyfriend.scale.set(0.8, 0.8);
+				dad.scale.set(0.8, 0.8);
+				boyfriend.updateHitbox();
+				dad.updateHitbox();
+
+				boyfriend.x +=150;
+
+				dad.x -=50;
+				dad.y += 100;
+
+				// not like it matters because gf isn't here
+				gf.x -= 300;
+
+				boyfriend.x -= 300;
+				dad.x -= 300;
+
+
 			case 'limo':
 				boyfriend.y -= 220;
 				boyfriend.x += 260;
@@ -857,8 +910,9 @@ class PlayState extends MusicBeatState
 				gf.x += 180;
 				gf.y += 300;
 		}
-
-		add(gf);
+		
+		if (curStage.toLowerCase() != 'oasis')
+			add(gf);
 
 		// Shitty layering but whatev it works LOL
 		if (curStage == 'limo')

@@ -37,6 +37,11 @@ class HealthIcon extends FlxSprite
 		animation.add('parents-christmas', [27, 28, 29], 0, false, isPlayer);
 		animation.add('monster', [30, 31, 32], 0, false, isPlayer);
 		animation.add('monster-christmas', [30, 31, 32], 0, false, isPlayer);
+		animation.add('asha', [15, 16, 17], 0, false, isPlayer);
+		animation.add('asha-sunset', [15, 16, 17], 0, false, isPlayer);
+		animation.add('asha-night', [15, 16, 17], 0, false, isPlayer);
+		animation.add('bf-sunset', [0, 1, 2], 0, false, isPlayer);
+		animation.add('bf-night', [0, 1, 2], 0, false, isPlayer);
 		animation.play(char);
 		switch(char){
 			case 'bf-pixel' | 'senpai' | 'senpai-angry' | 'spirit' | 'gf-pixel':

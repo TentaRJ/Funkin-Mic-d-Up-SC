@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="mom_dad_christmas_assets.png">
+	<!-- Created with Adobe Animate version 20.5.0.29329 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="santa idle in fear0000" x="0" y="0" width="621" height="604" frameX="-1" frameY="-18" frameWidth="622" frameHeight="624"/>
+	<SubTexture name="santa idle in fear0001" x="621" y="0" width="621" height="624" frameX="-1" frameY="0" frameWidth="622" frameHeight="624"/>
+	<SubTexture name="santa idle in fear0002" x="1242" y="0" width="621" height="624" frameX="-1" frameY="0" frameWidth="622" frameHeight="624"/>
+	<SubTexture name="santa idle in fear0003" x="1242" y="0" width="621" height="624" frameX="-1" frameY="0" frameWidth="622" frameHeight="624"/>
+	<SubTexture name="santa idle in fear0004" x="0" y="624" width="621" height="624" frameX="-1" frameY="0" frameWidth="622" frameHeight="624"/>
+	<SubTexture name="santa idle in fear0005" x="0" y="624" width="621" height="624" frameX="-1" frameY="0" frameWidth="622" frameHeight="624"/>
+	<SubTexture name="santa idle in fear0006" x="621" y="624" width="622" height="624"/>
+	<SubTexture name="santa idle in fear0007" x="621" y="624" width="622" height="624"/>
+	<SubTexture name="santa idle in fear0008" x="621" y="624" width="622" height="624"/>
+	<SubTexture name="santa idle in fear0009" x="621" y="624" width="622" height="624"/>
+	<SubTexture name="santa idle in fear0010" x="621" y="624" width="622" height="624"/>
+	<SubTexture name="santa idle in fear0011" x="621" y="624" width="622" height="624"/>
+	<SubTexture name="santa idle in fear0012" x="621" y="624" width="622" height="624"/>
+	<SubTexture name="santa idle in fear0013" x="621" y="624" width="622" height="624"/>
+</TextureAtlas>

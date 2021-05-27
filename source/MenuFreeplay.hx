@@ -368,10 +368,10 @@ class MenuFreeplay extends MusicBeatState
 	{
 		curDifficulty += change;
 
-		if (curDifficulty < 0)
-			curDifficulty = 5;
-		if (curDifficulty > 5)
-			curDifficulty = 0;
+		if (curDifficulty < 1)
+			curDifficulty = 3;
+		if (curDifficulty > 3)
+			curDifficulty = 1;
 
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
