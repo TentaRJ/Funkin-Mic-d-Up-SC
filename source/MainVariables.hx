@@ -50,6 +50,10 @@ typedef Variables =
     var lateD:Bool;
     var sickX:Float;
     var sickY:Float;
+    var chromakey:Bool;
+    var healthiconvis:Bool;
+    var charactervis:Bool;
+    var color:String;
 }
 
 class MainVariables
@@ -106,7 +110,11 @@ class MainVariables
                 sickX: 650,
                 sickY: 320,
                 //up to do in week 7 update
-                scroll: 'up'
+                scroll: 'up',
+                chromakey: false,
+                healthiconvis: false,
+                charactervis: false,
+                color: 'green'
             };
             
             Save();

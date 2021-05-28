@@ -209,7 +209,7 @@ class PAGE1settings extends MusicBeatSubstate
                     ExplainText.text = "FPS CAP:\nChange your FPS cap when you want some smoother footage.";
                 case "page":
                     ResultText.text = "GENERAL";
-                    ExplainText.text = "Previous Page: CLEAR \nNext Page: SFX";
+                    ExplainText.text = "Previous Page: CHROMAKEY \nNext Page: SFX";
                 case "filter":
                     ResultText.text = _variables.filter;
                     ExplainText.text = "FILTER: \nChange how colors of the game work, either for fun or if you're colorblind.";
@@ -330,55 +330,55 @@ class PAGE1settings extends MusicBeatSubstate
                             if (Change == 1)
                                 openSubState(new PAGE2settings());
                             else
-                                openSubState(new PAGE6settings());
+                                openSubState(new PAGE7settings());
                         });
-                    case "filter":
-                        fil += Change;
-                        if (fil > 7)
-                            fil = 0;
-                        if (fil < 0)
-                            fil = 7;
+                case "filter":
+                    fil += Change;
+                    if (fil > 7)
+                        fil = 0;
+                    if (fil < 0)
+                        fil = 7;
+    
+                    switch (fil)
+                    {
+                        case 0:
+                            _variables.filter = 'none';
+                        case 1:
+                            _variables.filter = 'tritanopia';
+                        case 2:
+                            _variables.filter = 'protanopia';
+                        case 3:
+                            _variables.filter = 'deutranopia';
+                        case 4:
+                            _variables.filter = 'virtual boy';
+                        case 5:
+                            _variables.filter = 'gameboy';
+                        case 6:
+                            _variables.filter = 'downer';
+                        case 7:
+                            _variables.filter = 'grayscale';
+                    }
+    
+                    FlxG.sound.play(Paths.sound('scrollMenu'), _variables.svolume/100);
+                    MainVariables.UpdateColors();
+                case "brightness":
+                    _variables.brightness += Change*10;
+                    if (_variables.brightness < -200)
+                        _variables.brightness = -200;
+                    if (_variables.brightness > 200)
+                        _variables.brightness = 200;
         
-                        switch (fil)
-                        {
-                            case 0:
-                                _variables.filter = 'none';
-                            case 1:
-                                _variables.filter = 'tritanopia';
-                            case 2:
-                                _variables.filter = 'protanopia';
-                            case 3:
-                                _variables.filter = 'deutranopia';
-                            case 4:
-                                _variables.filter = 'virtual boy';
-                            case 5:
-                                _variables.filter = 'gameboy';
-                            case 6:
-                                _variables.filter = 'downer';
-                            case 7:
-                                _variables.filter = 'grayscale';
-                        }
-        
-                        FlxG.sound.play(Paths.sound('scrollMenu'), _variables.svolume/100);
-                        MainVariables.UpdateColors();
-                    case "brightness":
-                        _variables.brightness += Change*10;
-                        if (_variables.brightness < -200)
-                            _variables.brightness = -200;
-                        if (_variables.brightness > 200)
-                            _variables.brightness = 200;
+                    FlxG.sound.play(Paths.sound('scrollMenu'), _variables.svolume/100);
+                    MainVariables.UpdateColors();
+                case "gamma":
+                    _variables.gamma += Change/10;
+                    if (_variables.gamma < 0.1)
+                        _variables.gamma = 0.1;
+                    if (_variables.gamma > 5)
+                        _variables.gamma = 5;
             
-                        FlxG.sound.play(Paths.sound('scrollMenu'), _variables.svolume/100);
-                        MainVariables.UpdateColors();
-                    case "gamma":
-                        _variables.gamma += Change/10;
-                        if (_variables.gamma < 0.1)
-                            _variables.gamma = 0.1;
-                        if (_variables.gamma > 5)
-                            _variables.gamma = 5;
-                
-                        FlxG.sound.play(Paths.sound('scrollMenu'), _variables.svolume/100);
-                        MainVariables.UpdateColors();
+                    FlxG.sound.play(Paths.sound('scrollMenu'), _variables.svolume/100);
+                    MainVariables.UpdateColors();
 			}
 
             new FlxTimer().start(0.2, function(tmr:FlxTimer)

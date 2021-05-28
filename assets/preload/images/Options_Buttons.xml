@@ -78,4 +78,12 @@
 	<SubTexture name="vvolume select0000" x="4" y="2071" width="512" height="194"/>
 	<SubTexture name="watermark idle0000" x="526" y="2071" width="383" height="195"/>
 	<SubTexture name="watermark select0000" x="919" y="2071" width="512" height="178"/>
+	<SubTexture name="chromakey idle0000" x="1444" y="1390" width="383" height="204"/>
+	<SubTexture name="chromakey select0000" x="1837" y="1390" width="512" height="187"/>
+	<SubTexture name="color idle0000" x="1444" y="1390" width="383" height="204"/>
+	<SubTexture name="color select0000" x="1837" y="1390" width="512" height="187"/>
+	<SubTexture name="characters idle0000" x="1444" y="1390" width="383" height="204"/>
+	<SubTexture name="characters select0000" x="1837" y="1390" width="512" height="187"/>
+	<SubTexture name="healthicon idle0000" x="1444" y="1390" width="383" height="204"/>
+	<SubTexture name="healthicon select0000" x="1837" y="1390" width="512" height="187"/>
 </TextureAtlas>

@@ -30,11 +30,11 @@ import flixel.tweens.FlxEase;
 
 using StringTools;
 
-class PAGE6settings extends MusicBeatSubstate
+class PAGE7settings extends MusicBeatSubstate
 {
 
     var menuItems:FlxTypedGroup<FlxSprite>;
-    var optionShit:Array<String> = ['page', 'save', 'config'];
+    var optionShit:Array<String> = ['page', 'chromakey', 'characters', 'healthicon'];
 
     private var grpSongs:FlxTypedGroup<Alphabet>;
     var selectedSomethin:Bool = false;
@@ -83,10 +83,12 @@ class PAGE6settings extends MusicBeatSubstate
 
         createResults();
 
+        updateResults();
+
         FlxG.camera.follow(camFollow, null, camLerp);
 
         #if desktop
-			DiscordClient.changePresence("Settings page: Clear", null);
+			DiscordClient.changePresence("Settings page: Chromakey", null);
 		#end
     }
 
@@ -132,19 +134,14 @@ class PAGE6settings extends MusicBeatSubstate
                         changeItem(1);
                     }
 			
-				if (controls.LEFT_P)
+				    if (controls.LEFT_P)
                     {
                         changePress(-1);
                     }
         
-                if (controls.RIGHT_P)
+                    if (controls.RIGHT_P)
                     {
                         changePress(1);
-                    }
-
-                if (controls.ACCEPT)
-                    {
-                        clearStuff();
                     }
                 
                 if (controls.BACK)
@@ -173,17 +170,23 @@ class PAGE6settings extends MusicBeatSubstate
                         }
                     }
             
-            switch (optionShit[curSelected])
+            switch (optionShit[curSelected].toLowerCase())
             {
                 case "page":
                     ResultText.text = "CLEAR";
-                    ExplainText.text = "Previous Page: DEVELOPER \nNext Page: CHROMAKEY";
-                case "config":
+                    ExplainText.text = "Previous Page: DEVELOPER \nNext Page: GENERAL";
+                case "chromakey":
+                    ResultText.text = Std.string(_variables.chromakey).toUpperCase();
+                    ExplainText.text = "ChromaKey:\nAdds a colored screen to the background for convienence.\nTRUE: ON \nFALSE: OFF";
+                case "color":
                     ResultText.text = "";
-                    ExplainText.text = "CLEAR CONFIG:\nWill reset your configuration in case anything goes wrong, which it shouldn't.";
-                case "save":
-                    ResultText.text = "";
-                    ExplainText.text = "CLEAR SAVE:\nWill reset your save file back to zero. All scores, all ranks. Gone.";
+                    ExplainText.text = "Color:\nChange the color of the screen.\nChromaKey must be on to work";
+                case "characters":
+                    ResultText.text = Std.string(_variables.charactervis).toUpperCase();
+                    ExplainText.text = "Characters:\nShould the characters be visible?";
+                case "healthicon":
+                    ResultText.text = Std.string(_variables.healthiconvis).toUpperCase();
+                    ExplainText.text = "HealthIcon:\nShould the health bar and icons be visible?";
             }
 
             menuItems.forEach(function(spr:FlxSprite)
@@ -201,6 +204,20 @@ class PAGE6settings extends MusicBeatSubstate
                 });
         }
 
+    function updateResults():Void
+        {
+    
+            switch (_variables.color)
+            {
+                case 'green':
+                    fil = 0;
+                case 'blue':
+                    fil = 1;
+                case 'cyan':
+                    fil = 2;
+            }
+    
+        }
     function changeItem(huh:Int = 0)
         {
             curSelected += huh;
@@ -223,15 +240,43 @@ class PAGE6settings extends MusicBeatSubstate
                 });
         }
 
-	function changePress(Change:Int = 0)
-		{
-			switch (optionShit[curSelected])
-			{
+    function changePress(Change:Int=0)
+    {
+        switch (optionShit[curSelected])
+            {
+                case 'chromakey':
+                    _variables.chromakey = !_variables.chromakey;
+
+                    FlxG.sound.play(Paths.sound('scrollMenu'), _variables.svolume/100);
+                case 'healthicon':
+                    _variables.healthiconvis = !_variables.healthiconvis;
+
+                    FlxG.sound.play(Paths.sound('scrollMenu'), _variables.svolume/100);
+                case 'characters':
+                    _variables.charactervis = !_variables.charactervis;
+
+                    FlxG.sound.play(Paths.sound('scrollMenu'), _variables.svolume/100);
+                case 'color':
+                    fil += Change;
+                    if (fil > 2)
+                        fil = 0;
+                    if (fil < 0)
+                        fil = 2;
+    
+                    switch (fil)
+                    {
+                        case 0:
+                            _variables.color = 'green';
+                        case 1:
+                            _variables.color = 'blue';
+                        case 2:
+                            _variables.color = 'cyan';
+                    }
                 case 'page':
                     SettingsState.page += Change;
                     FlxG.sound.play(Paths.sound('scrollMenu'), _variables.svolume/100);
                     selectedSomethin = true;
-        
+
                     menuItems.forEach(function(spr:FlxSprite)
                         {
                             spr.animation.play('idle');
@@ -240,44 +285,20 @@ class PAGE6settings extends MusicBeatSubstate
 
                     FlxTween.tween(ResultText, { alpha: 0}, 0.15, { ease: FlxEase.expoIn });
                     FlxTween.tween(ExplainText, { alpha: 0}, 0.15, { ease: FlxEase.expoIn });
-    
+
                     new FlxTimer().start(0.2, function(tmr:FlxTimer)
                         {
                             if (Change == 1)
-                                openSubState(new PAGE7settings());
+                                openSubState(new PAGE1settings());
                             else
-                                openSubState(new PAGE5settings());
+                                openSubState(new PAGE6settings());
                         });
-                    }
+            }
 
-            new FlxTimer().start(0.2, function(tmr:FlxTimer)
-                {
-                    MainVariables.Save();
-                });
-		}
-    
-    function clearStuff():Void
-    {
-        switch (optionShit[curSelected])
-		{
-            case 'save':
-                FlxG.sound.play(Paths.sound('confirmMenu'), _variables.svolume/100);
-                FlxG.save.erase();
-                FlxG.save.flush();
-                FlxG.save.bind('save', "Funkin Mic'd Up");
-            case 'config':
-                FlxG.sound.play(Paths.sound('confirmMenu'), _variables.svolume/100);
-                FileSystem.deleteFile('config.json');
-                FlxG.sound.music.volume = 1;
-
-                if (_variables.music != "Classic")
-                    FlxG.sound.playMusic(Paths.music('freakyMenu'), _variables.mvolume/100);
-
-                MainVariables.Load();
-                _variables.firstTime = false;
-                MainVariables.Save();
-                (cast (Lib.current.getChildAt(0), Main)).changeColor(0xFFFFFFFF);
-        }
+        new FlxTimer().start(0.2, function(tmr:FlxTimer)
+        {
+            MainVariables.Save();
+        });
     }
 
     override function openSubState(SubState:FlxSubState)
