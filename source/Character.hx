@@ -640,7 +640,7 @@ class Character extends FlxSprite
 				addOffset("singDOWN");
 				
 				playAnim('idle');	
-			case 'asha_sunset':
+			case 'asha-sunset':
 				frames = Paths.getSparrowAtlas("characters/asha_sunset", 'shared');
 				animation.addByPrefix('idle', 'asha idle', 24, false);
 				animation.addByPrefix('singUP', "asha up note", 24, false);
@@ -656,7 +656,7 @@ class Character extends FlxSprite
 				
 				playAnim('idle');	
 
-			case 'asha_night':
+			case 'asha-night':
 				frames = Paths.getSparrowAtlas("characters/asha_night", 'shared');
 				animation.addByPrefix('idle', 'asha idle', 24, false);
 				animation.addByPrefix('singUP', "asha up note", 24, false);

@@ -28,13 +28,10 @@ class MenuWeek extends MusicBeatState
 
 	var weekData:Array<Dynamic> = [
 		['Tutorial'],
-		['Bopeebo', 'Fresh', 'Dadbattle'],
-		['Spookeez', 'South', "Monster"],
-		['Pico', 'Philly', "Blammed"],
-		['Satin-Panties', "High", "Milf"],
-		['Cocoa', 'Eggnog', 'Winter-Horrorland'],
-		['Senpai', 'Roses', 'Thorns'],
-		["Rapadagna-Rumble", "Heart-Of-Icegrave", "Monster-Murmer"]
+		["Rapadagna-Rumble", "Heart-Of-Icegrave", "Monster-Murmer"],
+		["Rapadagna-Rumble"],
+		['Heart-Of-Icegrave'],
+		['Monster-Murmer']
 	];
 	
 	var curWeekData:Array<Dynamic> = [];
@@ -45,24 +42,18 @@ class MenuWeek extends MusicBeatState
 
 	var weekCharacters:Array<String> = [
 		"gf",
-		"dad",
-		"spooky",
-		"pico",
-		"mom",
-		"parents-christmas",
-		"senpai",
+		"gf",
+		"gf",
+		"gf",
 		"gf"
 	];
 
 	var weekNames:Array<String> = [
 		"",
-		"Daddy Dearest",
-		"Spooky Month",
-		"PICO",
-		"MOMMY MUST MURDER",
-		"RED SNOW",
-		"hating simulator ft. moawling",
-		"Vs Asha"
+		"Vs Asha",
+		"test",
+		"test",
+		"test"
 	];
 
 	var txtWeekTitle:FlxText;

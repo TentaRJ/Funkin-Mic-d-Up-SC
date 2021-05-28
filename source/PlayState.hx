@@ -396,11 +396,37 @@ class PlayState extends MusicBeatState
 				}
 			case 'heart-of-icegrave':
 			{
+				defaultCamZoom = 0.8;
+				curStage = 'oasis';
 
+				var bg:FlxSprite = new FlxSprite(-880, -960).loadGraphic(Paths.image('custom/background2', 'weekcustom'));
+				bg.scrollFactor.set(0.6, 1);
+				bg.scale.set(1.2, 1.2);
+				bg.updateHitbox();
+				add(bg);
+
+				var ground:FlxSprite = new FlxSprite(-880, -960).loadGraphic(Paths.image('custom/foreground2', 'weekcustom'));
+				ground.scrollFactor.set(1.4, 1);
+				ground.scale.set(1.2, 1.2);
+				ground.updateHitbox();
+				add(ground);
 			}
 			case 'monster-murmer':
 			{
+				defaultCamZoom = 0.8;
+				curStage = 'oasis';
 
+				var bg:FlxSprite = new FlxSprite(-880, -960).loadGraphic(Paths.image('custom/background3', 'weekcustom'));
+				bg.scrollFactor.set(0.6, 1);
+				bg.scale.set(1.2, 1.2);
+				bg.updateHitbox();
+				add(bg);
+
+				var ground:FlxSprite = new FlxSprite(-880, -960).loadGraphic(Paths.image('custom/foreground3', 'weekcustom'));
+				ground.scrollFactor.set(1.4, 1);
+				ground.scale.set(1.2, 1.2);
+				ground.updateHitbox();
+				add(ground);
 			}
 		case 'spookeez' | 'monster' | 'south':
 		{
