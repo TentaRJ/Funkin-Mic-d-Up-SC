@@ -32,7 +32,8 @@ using StringTools;
 
 class PAGE7settings extends MusicBeatSubstate
 {
-
+    var fil:Int = 0;
+    var chromasquare:FlxSprite;
     var menuItems:FlxTypedGroup<FlxSprite>;
     var optionShit:Array<String> = ['page', 'chromakey', 'characters', 'healthicon'];
 
@@ -94,6 +95,9 @@ class PAGE7settings extends MusicBeatSubstate
 
         function createResults():Void
             {
+                chromasquare = new FlxSprite(100, 69).makeGraphic(500, 500, FlxColor.GREEN);
+                add(chromasquare);
+
                 add(ResultText);
                 ResultText.scrollFactor.x = 0;
                 ResultText.scrollFactor.y = 0;
@@ -288,6 +292,7 @@ class PAGE7settings extends MusicBeatSubstate
 
                     new FlxTimer().start(0.2, function(tmr:FlxTimer)
                         {
+                            remove(chromasquare);
                             if (Change == 1)
                                 openSubState(new PAGE1settings());
                             else
