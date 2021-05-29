@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="pepelogoonight.png">
+	<!-- Created with Adobe Animate version 20.5.0.29329 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="pepelogoo0000" x="0" y="0" width="700" height="675" frameX="0" frameY="-28" frameWidth="700" frameHeight="711"/>
+	<SubTexture name="pepelogoo0001" x="0" y="0" width="700" height="675" frameX="0" frameY="-28" frameWidth="700" frameHeight="711"/>
+	<SubTexture name="pepelogoo0002" x="700" y="0" width="700" height="690" frameX="0" frameY="-16" frameWidth="700" frameHeight="711"/>
+	<SubTexture name="pepelogoo0003" x="700" y="0" width="700" height="690" frameX="0" frameY="-16" frameWidth="700" frameHeight="711"/>
+	<SubTexture name="pepelogoo0004" x="0" y="690" width="700" height="703" frameX="0" frameY="-6" frameWidth="700" frameHeight="711"/>
+	<SubTexture name="pepelogoo0005" x="0" y="690" width="700" height="703" frameX="0" frameY="-6" frameWidth="700" frameHeight="711"/>
+	<SubTexture name="pepelogoo0006" x="700" y="690" width="700" height="711"/>
+	<SubTexture name="pepelogoo0007" x="700" y="690" width="700" height="711"/>
+	<SubTexture name="pepelogoo0008" x="700" y="690" width="700" height="711"/>
+	<SubTexture name="pepelogoo0009" x="700" y="690" width="700" height="711"/>
+	<SubTexture name="pepelogoo0010" x="700" y="690" width="700" height="711"/>
+	<SubTexture name="pepelogoo0011" x="700" y="690" width="700" height="711"/>
+	<SubTexture name="pepelogoo0012" x="700" y="690" width="700" height="711"/>
+	<SubTexture name="pepelogoo0013" x="700" y="690" width="700" height="711"/>
+</TextureAtlas>

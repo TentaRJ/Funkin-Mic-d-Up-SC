@@ -1,4 +1,6 @@
 bf
+bf-sunset
+bf-night
 dad
 gf
 spooky
@@ -17,3 +19,6 @@ gf-pixel
 senpai
 senpai-angry
 spirit
+asha
+asha-sunset
+asha-night

@@ -180,15 +180,15 @@ class MainMenuState extends MusicBeatState
 				changeItem(1);
 			}
 
-			if (controls.BACK)
-			{
-				selectedSomethin = true;
-				#if desktop
-				DiscordClient.changePresence("Back to the Title Screen.", null);
-				#end
+			// if (controls.BACK)
+			// {
+			// 	selectedSomethin = true;
+			// 	#if desktop
+			// 	DiscordClient.changePresence("Back to the Title Screen.", null);
+			// 	#end
 
-				FlxG.switchState(new TitleStateReturn());
-			}
+			// 	FlxG.switchState(new TitleStateReturn());
+			// }
 
 			if (controls.ACCEPT)
 			{

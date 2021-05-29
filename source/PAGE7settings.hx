@@ -84,7 +84,7 @@ class PAGE7settings extends MusicBeatSubstate
 
         createResults();
 
-        updateResults();
+        // updateResults();
 
         FlxG.camera.follow(camFollow, null, camLerp);
 
@@ -95,8 +95,11 @@ class PAGE7settings extends MusicBeatSubstate
 
         function createResults():Void
             {
-                chromasquare = new FlxSprite(100, 69).makeGraphic(500, 500, FlxColor.GREEN);
-                add(chromasquare);
+                chromasquare = new FlxSprite(0, 0).makeGraphic(500, 500, FlxColor.GREEN);
+                chromasquare.scrollFactor.set(0, 0);
+                // chromasquare.scale.set(3,5);
+                chromasquare.updateHitbox();
+                // add(chromasquare);
 
                 add(ResultText);
                 ResultText.scrollFactor.x = 0;
@@ -177,20 +180,20 @@ class PAGE7settings extends MusicBeatSubstate
             switch (optionShit[curSelected].toLowerCase())
             {
                 case "page":
-                    ResultText.text = "CLEAR";
+                    ResultText.text = "CHROMAKEY";
                     ExplainText.text = "Previous Page: DEVELOPER \nNext Page: GENERAL";
                 case "chromakey":
                     ResultText.text = Std.string(_variables.chromakey).toUpperCase();
-                    ExplainText.text = "ChromaKey:\nAdds a colored screen to the background for convienence.\nTRUE: ON \nFALSE: OFF";
-                case "color":
-                    ResultText.text = "";
-                    ExplainText.text = "Color:\nChange the color of the screen.\nChromaKey must be on to work";
+                    ExplainText.text = "ChromaKey:\nAdds a colored screen to the background for convienence";
+                // case "color":
+                //     ResultText.text = Std.string(_variables.color).toUpperCase();
+                //     ExplainText.text = "Color:\nChange the color of the screen";
                 case "characters":
                     ResultText.text = Std.string(_variables.charactervis).toUpperCase();
-                    ExplainText.text = "Characters:\nShould the characters be visible?";
+                    ExplainText.text = "Characters:\nHide the characters?";
                 case "healthicon":
                     ResultText.text = Std.string(_variables.healthiconvis).toUpperCase();
-                    ExplainText.text = "HealthIcon:\nShould the health bar and icons be visible?";
+                    ExplainText.text = "HealthIcon:\nHide the health bar?";
             }
 
             menuItems.forEach(function(spr:FlxSprite)
@@ -208,20 +211,20 @@ class PAGE7settings extends MusicBeatSubstate
                 });
         }
 
-    function updateResults():Void
-        {
+    // function updateResults():Void
+    //     {
     
-            switch (_variables.color)
-            {
-                case 'green':
-                    fil = 0;
-                case 'blue':
-                    fil = 1;
-                case 'cyan':
-                    fil = 2;
-            }
+    //         switch (_variables.color)
+    //         {
+    //             case 0xFF008000:
+    //                 fil = 0;
+    //             case 0xFF00FFFF:
+    //                 fil = 1;
+    //             case 0xFF800080:
+    //                 fil = 2;
+    //         }
     
-        }
+    //     }
     function changeItem(huh:Int = 0)
         {
             curSelected += huh;
@@ -260,22 +263,22 @@ class PAGE7settings extends MusicBeatSubstate
                     _variables.charactervis = !_variables.charactervis;
 
                     FlxG.sound.play(Paths.sound('scrollMenu'), _variables.svolume/100);
-                case 'color':
-                    fil += Change;
-                    if (fil > 2)
-                        fil = 0;
-                    if (fil < 0)
-                        fil = 2;
+                // case 'color':
+                //     fil += Change;
+                //     if (fil > 2)
+                //         fil = 0;
+                //     if (fil < 0)
+                //         fil = 2;
     
-                    switch (fil)
-                    {
-                        case 0:
-                            _variables.color = 'green';
-                        case 1:
-                            _variables.color = 'blue';
-                        case 2:
-                            _variables.color = 'cyan';
-                    }
+                //     switch (fil)
+                //     {
+                //         case 0:
+                //             _variables.color = 0xFF008000;
+                //         case 1:
+                //             _variables.color = 0xFF00FFFF;
+                //         case 2:
+                //             _variables.color = 0xFF800080;
+                //     }
                 case 'page':
                     SettingsState.page += Change;
                     FlxG.sound.play(Paths.sound('scrollMenu'), _variables.svolume/100);

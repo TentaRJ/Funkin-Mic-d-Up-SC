@@ -584,7 +584,7 @@ class Character extends FlxSprite
 
 				flipX = true;
 			case 'bf-sunset':
-				var tex = Paths.getSparrowAtlas('characters/BOYFRIENDNIGHT','shared');
+				var tex = Paths.getSparrowAtlas('characters/BOYFRIENDSUNSET','shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('worried', 'BF idle worried', 24, false);
@@ -640,6 +640,7 @@ class Character extends FlxSprite
 				addOffset("singDOWN");
 				
 				playAnim('idle');	
+
 			case 'asha-sunset':
 				frames = Paths.getSparrowAtlas("characters/asha_sunset", 'shared');
 				animation.addByPrefix('idle', 'asha idle', 24, false);
@@ -671,6 +672,7 @@ class Character extends FlxSprite
 				addOffset("singDOWN");
 				
 				playAnim('idle');	
+
 		}
 
 		dance();

@@ -53,7 +53,7 @@ typedef Variables =
     var chromakey:Bool;
     var healthiconvis:Bool;
     var charactervis:Bool;
-    var color:String;
+    // var color:Int;
 }
 
 class MainVariables
@@ -114,7 +114,6 @@ class MainVariables
                 chromakey: false,
                 healthiconvis: false,
                 charactervis: false,
-                color: 'green'
             };
             
             Save();

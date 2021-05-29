@@ -108,6 +108,8 @@ class SettingsState extends MusicBeatState
 				FlxG.state.openSubState(new PAGE5settings());
 			case 5:
 				FlxG.state.openSubState(new PAGE6settings());
+			case 6:
+				FlxG.state.openSubState(new PAGE6settings());
 		}
 	}
 
@@ -117,8 +119,8 @@ class SettingsState extends MusicBeatState
 		checker.y -= 0.51/(_variables.fps/60);
 
 		if (page < 0)
-			page = 5;
-		if (page > 5)
+			page = 6;
+		if (page > 6)
 			page = 0;
 
 		super.update(elapsed);

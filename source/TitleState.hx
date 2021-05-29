@@ -198,7 +198,7 @@ class TitleState extends MusicBeatState
 		FNF_Logo.x = -1500;
 		FNF_Logo.y = 300;
 
-		add(logoBl);
+		// add(logoBl);
 		logoBl.visible = false;
 
 		titleText = new FlxSprite(100, FlxG.height * 0.8);

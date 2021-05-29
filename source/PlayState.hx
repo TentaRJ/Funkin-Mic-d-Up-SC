@@ -365,7 +365,7 @@ class PlayState extends MusicBeatState
 			DiscordClient.changePresence(detailsText, SONG.song, iconRPC, true);
 		#end
 
-		//Stage Assigner
+		//Stage assigner if _variables.chromakey is true
 		switch (SONG.song.toLowerCase())
 		{
 			case 'rapadagna-rumble' | 'heart-of-icegrave' | 'monster-murmer':
@@ -431,6 +431,14 @@ class PlayState extends MusicBeatState
 						ground.scale.set(1.2, 1.2);
 						ground.updateHitbox();
 						add(ground);
+
+						var pepelogoo = new FlxSprite(-425, 350);
+						pepelogoo.frames = Paths.getSparrowAtlas('custom/pepelogooday', 'weekcustom');
+						pepelogoo.scale.set(0.8, 0.8);
+						pepelogoo.animation.addByPrefix('idle', 'pepelogoo', 24, true);
+						pepelogoo.animation.play('idle');
+						pepelogoo.updateHitbox();
+						add(pepelogoo);
 					}
 				case 'heart-of-icegrave':
 				{
@@ -448,10 +456,18 @@ class PlayState extends MusicBeatState
 					ground.scale.set(1.2, 1.2);
 					ground.updateHitbox();
 					add(ground);
+
+					var pepelogoo = new FlxSprite(-425, 350);
+					pepelogoo.frames = Paths.getSparrowAtlas('custom/pepelogoosunset', 'weekcustom');
+					pepelogoo.scale.set(0.8, 0.8);
+					pepelogoo.animation.addByPrefix('idle', 'pepelogoo', 24, true);
+					pepelogoo.animation.play('idle');
+					pepelogoo.updateHitbox();
+					add(pepelogoo);
 				}
 				case 'monster-murmer':
 				{
-					defaultCamZoom = 0.8;
+					defaultCamZoom = 0.77;
 					curStage = 'oasis';
 
 					var bg:FlxSprite = new FlxSprite(-880, -960).loadGraphic(Paths.image('custom/background3', 'weekcustom'));
@@ -460,11 +476,29 @@ class PlayState extends MusicBeatState
 					bg.updateHitbox();
 					add(bg);
 
+					var oasisCrowd = new FlxSprite(-615, -480);
+					oasisCrowd.frames = Paths.getSparrowAtlas('custom/crowdnight', 'weekcustom');
+					oasisCrowd.scale.set(1.2, 1.2);
+					oasisCrowd.scrollFactor.set(0.6, 1);
+					oasisCrowd.setGraphicSize(Std.int(oasisCrowd.width * 0.85));
+					oasisCrowd.updateHitbox();
+					oasisCrowd.animation.addByPrefix('bop', "Crowd0", 24, true);
+					oasisCrowd.animation.play('bop', true);
+					add(oasisCrowd);
+
 					var ground:FlxSprite = new FlxSprite(-880, -960).loadGraphic(Paths.image('custom/foreground3', 'weekcustom'));
 					ground.scrollFactor.set(1.4, 1);
 					ground.scale.set(1.2, 1.2);
 					ground.updateHitbox();
 					add(ground);
+
+					var pepelogoo = new FlxSprite(-425, 350);
+					pepelogoo.frames = Paths.getSparrowAtlas('custom/pepelogoonight', 'weekcustom');
+					pepelogoo.scale.set(0.8, 0.8);
+					pepelogoo.animation.addByPrefix('idle', 'pepelogoo', 24, true);
+					pepelogoo.animation.play('idle');
+					pepelogoo.updateHitbox();
+					add(pepelogoo);
 				}
 			case 'spookeez' | 'monster' | 'south':
 			{
@@ -855,10 +889,25 @@ class PlayState extends MusicBeatState
 		}
 		else
 			{
-				var chromaScreen = new FlxSprite(-150,-300).makeGraphic(1500, 3000, FlxColor.GREEN);
+				var chromaScreen = new FlxSprite(-200,-300).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.GREEN);
 				chromaScreen.scrollFactor.set(0, 0);
+				chromaScreen.updateHitbox();
 				add(chromaScreen);
 			}
+
+		#if debug
+		var testbox=new FlxSprite(0,0).makeGraphic(100, 100, FlxColor.BLUE);
+		add(testbox);
+
+		var testbox2=new FlxSprite(-100,-100).makeGraphic(100, 100, FlxColor.RED);
+		add(testbox2);
+
+		var testbox3=new FlxSprite(0, -100).makeGraphic(100,100, FlxColor.CYAN);
+		add(testbox3);
+
+		var testbox4=new FlxSprite(1875, -300).makeGraphic(100,100, FlxColor.YELLOW);
+		add(testbox4);
+		#end
 
 		var gfVersion:String = 'gf';
 
@@ -1139,6 +1188,13 @@ class PlayState extends MusicBeatState
 				hearts.visible = false;
 			}
 
+		if (_variables.chromakey && _variables.charactervis)
+		{
+			boyfriend.visible = false;
+			gf.visible = false;
+			dad.visible = false;
+		}
+
 		var heartTex = Paths.getSparrowAtlas('heartUI', 'shared');
 		switch (curStage)
 		{
@@ -1223,7 +1279,7 @@ class PlayState extends MusicBeatState
 		// cameras = [FlxG.cameras.list[1]];
 		startingSong = true;
 
-		if (gameplayArea == "Story" && _variables.cutscene)
+		if (gameplayArea == "Story" && _variables.cutscene && !_variables.chromakey)
 		{
 			switch (curSong.toLowerCase())
 			{
@@ -1259,6 +1315,34 @@ class PlayState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('ANGRY', 'shared'), _variables.svolume/100);
 					FlxG.sound.play(Paths.sound('ANGRY_TEXT_BOX', 'shared'), _variables.svolume/100);
 					dialogueOrCountdown();
+				case 'rapadagna-rumble' | 'monster-murmer':
+					var blackScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
+					add(blackScreen);
+					blackScreen.scrollFactor.set();
+					camHUD.visible = false;
+
+					new FlxTimer().start(0.1, function(tmr:FlxTimer)
+					{
+						remove(blackScreen);
+						camFollow.x = 1925;
+						camFollow.y = -300;
+						FlxG.camera.focusOn(camFollow.getPosition());
+						FlxG.camera.zoom = 1.5;
+
+						new FlxTimer().start(0.8, function(tmr:FlxTimer)
+						{
+							camHUD.visible = true;
+							remove(blackScreen);
+							FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 2.5, {
+								ease: FlxEase.quadInOut,
+								onComplete: function(twn:FlxTween)
+								{
+									dialogueOrCountdown();
+								}
+							});
+						});
+					});
+
 				default:
 					dialogueOrCountdown();
 			}
