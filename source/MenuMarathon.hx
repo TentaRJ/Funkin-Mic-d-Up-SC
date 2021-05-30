@@ -253,12 +253,12 @@ class MenuMarathon extends MusicBeatState
     function changeDiff(change:Int = 0)
         {
             curDifficulty += change;
-    
-            if (curDifficulty < 0)
-                curDifficulty = 5;
-            if (curDifficulty > 5)
-                curDifficulty = 0;
-    
+
+            if (curDifficulty < 1)
+                curDifficulty = 3;
+            if (curDifficulty > 3)
+                curDifficulty = 1;
+
             #if !switch
                 intendedScore = Std.int(FlxG.save.data.marathonScore);
             #end
