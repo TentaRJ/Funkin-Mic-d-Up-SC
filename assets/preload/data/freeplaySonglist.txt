@@ -17,3 +17,6 @@ Winter-Horrorland:monster:5
 Senpai:senpai:6
 Roses:senpai:6
 Thorns:spirit:6
+Rapadagna-Rumble:asha:7
+Heart-Of-Icegrave:asha:7
+Monster-Murmer:asha:7

@@ -370,7 +370,7 @@ class PlayState extends MusicBeatState
 		{
 			case 'rapadagna-rumble' | 'heart-of-icegrave' | 'monster-murmer':
 				curStage = 'oasis';
-				defaultCamZoom=0.8;
+				defaultCamZoom=0.79;
 
 			case 'spookeez' | 'monster' | 'south':
 				curStage = "spooky";
@@ -407,7 +407,6 @@ class PlayState extends MusicBeatState
 			{
 				case 'rapadagna-rumble':
 					{
-						defaultCamZoom = 0.8;
 						curStage = 'oasis';
 
 						var bg:FlxSprite = new FlxSprite(-880, -960).loadGraphic(Paths.image('custom/background1', 'weekcustom'));
@@ -432,9 +431,9 @@ class PlayState extends MusicBeatState
 						ground.updateHitbox();
 						add(ground);
 
-						var pepelogoo = new FlxSprite(-425, 350);
+						var pepelogoo = new FlxSprite(-375, 550);
 						pepelogoo.frames = Paths.getSparrowAtlas('custom/pepelogooday', 'weekcustom');
-						pepelogoo.scale.set(0.8, 0.8);
+						pepelogoo.scale.set(0.4, 0.4);
 						pepelogoo.animation.addByPrefix('idle', 'pepelogoo', 24, true);
 						pepelogoo.animation.play('idle');
 						pepelogoo.updateHitbox();
@@ -442,7 +441,6 @@ class PlayState extends MusicBeatState
 					}
 				case 'heart-of-icegrave':
 				{
-					defaultCamZoom = 0.8;
 					curStage = 'oasis';
 
 					var bg:FlxSprite = new FlxSprite(-880, -960).loadGraphic(Paths.image('custom/background2', 'weekcustom'));
@@ -457,9 +455,9 @@ class PlayState extends MusicBeatState
 					ground.updateHitbox();
 					add(ground);
 
-					var pepelogoo = new FlxSprite(-425, 350);
+					var pepelogoo = new FlxSprite(-375, 550);
 					pepelogoo.frames = Paths.getSparrowAtlas('custom/pepelogoosunset', 'weekcustom');
-					pepelogoo.scale.set(0.8, 0.8);
+					pepelogoo.scale.set(0.4, 0.4);
 					pepelogoo.animation.addByPrefix('idle', 'pepelogoo', 24, true);
 					pepelogoo.animation.play('idle');
 					pepelogoo.updateHitbox();
@@ -467,7 +465,6 @@ class PlayState extends MusicBeatState
 				}
 				case 'monster-murmer':
 				{
-					defaultCamZoom = 0.77;
 					curStage = 'oasis';
 
 					var bg:FlxSprite = new FlxSprite(-880, -960).loadGraphic(Paths.image('custom/background3', 'weekcustom'));
@@ -476,7 +473,7 @@ class PlayState extends MusicBeatState
 					bg.updateHitbox();
 					add(bg);
 
-					var oasisCrowd = new FlxSprite(-615, -480);
+					var oasisCrowd = new FlxSprite(85, -813);
 					oasisCrowd.frames = Paths.getSparrowAtlas('custom/crowdnight', 'weekcustom');
 					oasisCrowd.scale.set(1.2, 1.2);
 					oasisCrowd.scrollFactor.set(0.6, 1);
@@ -492,9 +489,9 @@ class PlayState extends MusicBeatState
 					ground.updateHitbox();
 					add(ground);
 
-					var pepelogoo = new FlxSprite(-425, 350);
+					var pepelogoo = new FlxSprite(-375, 550);
 					pepelogoo.frames = Paths.getSparrowAtlas('custom/pepelogoonight', 'weekcustom');
-					pepelogoo.scale.set(0.8, 0.8);
+					pepelogoo.scale.set(0.4, 0.4);
 					pepelogoo.animation.addByPrefix('idle', 'pepelogoo', 24, true);
 					pepelogoo.animation.play('idle');
 					pepelogoo.updateHitbox();
@@ -981,8 +978,8 @@ class PlayState extends MusicBeatState
 		switch (curStage)
 		{
 			case 'oasis':
-				boyfriend.scale.set(0.8, 0.8);
-				dad.scale.set(0.8, 0.8);
+				// boyfriend.scale.set(0.8, 0.8);
+				// dad.scale.set(0.8, 0.8);
 				boyfriend.updateHitbox();
 				dad.updateHitbox();
 
@@ -1361,7 +1358,7 @@ class PlayState extends MusicBeatState
 
 	function dialogueOrCountdown():Void
 	{
-		trace(dialogue);
+		trace("dialogue: " + dialogue);
 		if (dialogue == null)
 			startCountdown();
 		else
