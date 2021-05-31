@@ -85,5 +85,7 @@
 	<SubTexture name="characters idle0000" x="1444" y="1390" width="383" height="204"/>
 	<SubTexture name="characters select0000" x="1837" y="1390" width="512" height="187"/>
 	<SubTexture name="healthicon idle0000" x="1444" y="1390" width="383" height="204"/>
-	<SubTexture name="healthicon select0000" x="1837" y="1390" width="512" height="187"/>
+	<SubTexture name="healthicon select0000" x="1837" y="1390" width="512" height="187"/>	
+	<SubTexture name="bottest idle0000" x="1444" y="1390" width="383" height="204"/>
+	<SubTexture name="bottest select0000" x="1837" y="1390" width="512" height="187"/>
 </TextureAtlas>

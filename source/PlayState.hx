@@ -431,9 +431,9 @@ class PlayState extends MusicBeatState
 						ground.updateHitbox();
 						add(ground);
 
-						var pepelogoo = new FlxSprite(-375, 550);
+						var pepelogoo = new FlxSprite(-375, 350);
 						pepelogoo.frames = Paths.getSparrowAtlas('custom/pepelogooday', 'weekcustom');
-						pepelogoo.scale.set(0.4, 0.4);
+						pepelogoo.scale.set(0.69, 0.69);
 						pepelogoo.animation.addByPrefix('idle', 'pepelogoo', 24, true);
 						pepelogoo.animation.play('idle');
 						pepelogoo.updateHitbox();
@@ -455,9 +455,9 @@ class PlayState extends MusicBeatState
 					ground.updateHitbox();
 					add(ground);
 
-					var pepelogoo = new FlxSprite(-375, 550);
+					var pepelogoo = new FlxSprite(-375, 350);
 					pepelogoo.frames = Paths.getSparrowAtlas('custom/pepelogoosunset', 'weekcustom');
-					pepelogoo.scale.set(0.4, 0.4);
+					pepelogoo.scale.set(0.69, 0.69);
 					pepelogoo.animation.addByPrefix('idle', 'pepelogoo', 24, true);
 					pepelogoo.animation.play('idle');
 					pepelogoo.updateHitbox();
@@ -489,9 +489,9 @@ class PlayState extends MusicBeatState
 					ground.updateHitbox();
 					add(ground);
 
-					var pepelogoo = new FlxSprite(-375, 550);
+					var pepelogoo = new FlxSprite(-375, 350);
 					pepelogoo.frames = Paths.getSparrowAtlas('custom/pepelogoonight', 'weekcustom');
-					pepelogoo.scale.set(0.4, 0.4);
+					pepelogoo.scale.set(0.69, 0.69);
 					pepelogoo.animation.addByPrefix('idle', 'pepelogoo', 24, true);
 					pepelogoo.animation.play('idle');
 					pepelogoo.updateHitbox();
@@ -984,9 +984,10 @@ class PlayState extends MusicBeatState
 				dad.updateHitbox();
 
 				boyfriend.x +=150;
+				boyfriend.y -=100;
 
 				dad.x -=50;
-				dad.y += 100;
+				dad.y -= 0;
 
 				// not like it matters because gf isn't here
 				gf.x -= 300;
@@ -1818,7 +1819,7 @@ class PlayState extends MusicBeatState
 					daStrumTime = daStrumTime + _variables.noteOffset + offbeatValue;
 
 				if (songNotes[1] > 3)
-				{
+				{	
 					gottaHitNote = !section.mustHitSection;
 				}
 

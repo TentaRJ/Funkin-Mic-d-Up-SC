@@ -194,6 +194,9 @@ class PAGE7settings extends MusicBeatSubstate
                 case "healthicon":
                     ResultText.text = Std.string(_variables.healthiconvis).toUpperCase();
                     ExplainText.text = "HealthIcon:\nHide the health bar?";
+                case "bottest":
+                    ResultText.text = "";
+                    ExplainText.text = "Experimental?";
             }
 
             menuItems.forEach(function(spr:FlxSprite)
@@ -263,6 +266,7 @@ class PAGE7settings extends MusicBeatSubstate
                     _variables.charactervis = !_variables.charactervis;
 
                     FlxG.sound.play(Paths.sound('scrollMenu'), _variables.svolume/100);
+
                 // case 'color':
                 //     fil += Change;
                 //     if (fil > 2)
